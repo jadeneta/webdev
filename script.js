@@ -40,7 +40,7 @@ function Gameboard() {
             this.resetGame();
         }
     };
-
+//
     this.checkForWinners = (game) => {
         const winConditions = [
           [0, 1, 2],
