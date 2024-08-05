@@ -28,7 +28,19 @@ function Gameboard() {
         });
     }
 
-    
+    this.checkForTie = () => {
+        let tie = true;
+        this.gameboardArray.forEach((element) => {
+            if(element.ownedBy === null){
+                tie = false;
+            }
+        });
+        if(tie){
+            console.log("tie");
+            this.resetGame();
+        }
+    };
+
     this.checkForWinners = (game) => {
         const winConditions = [
           [0, 1, 2],
@@ -83,6 +95,7 @@ function Game(){
             const player = this.getActivePlayer();
             gameCube.ownedBy = player;
             gameCube.gameCubeDiv.innerText = `${player.sign}`;
+            gameboard.checkForTie();
             gameboard.checkForWinners(this);
             this.switchPlayer();
             const playerTurn = document.querySelector(".player-turn");
